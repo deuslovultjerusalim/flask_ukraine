@@ -1,5 +1,5 @@
 from sqlite3 import *
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 def connect_db():
     connect020 = connect("chtoto.db")
@@ -41,6 +41,15 @@ def user_view():
     vazhnaa_peremenaa = cursor020.fetchall()
     return render_template("user_view.html", users = vazhnaa_peremenaa)
     
+@app.route('/user')
+def create_user():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        years_old = request.form.get('years_old')
+        gender = request.form.get('gender')
+        firstname = request.form.get('firstname')
+        login = request.form.get('login')
+        password = request.form.get('password')
 
 
 app.run(debug=True)
